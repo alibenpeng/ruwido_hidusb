@@ -93,7 +93,8 @@
 
 // input pin IR-receiver is connected to
 // has to match interrupt handler setup in main!
-#define ir_input()  (!((PINB) & 2))
+#define ir_input()  (!((PIND) & 4))
+//#define ir_input()  (!((PINB) & 2))
 
 // debug / logging defines (i.e. re-engineer unknown/new IR protocols)
 
@@ -102,14 +103,33 @@
 //#define IR_LOG
 //#define DEBUG
 
-#define RUWIDO_SHORT_MIN 10
-#define RUWIDO_SHORT_MAX 16
 
-#define RUWIDO_LONG_MIN  23
-#define RUWIDO_LONG_MAX  30
+#if F_CPU == 16000000
+	// Timing for 16MHz
+	#define RUWIDO_SHORT_MIN 10
+	#define RUWIDO_SHORT_MAX 16
 
-#define RUWIDO_MIN_NUM_BITS  26
-#define RUWIDO_MAX_NUM_BITS  33
+	#define RUWIDO_LONG_MIN  23
+	#define RUWIDO_LONG_MAX  30
+
+	#define RUWIDO_MIN_NUM_BITS  26
+	#define RUWIDO_MAX_NUM_BITS  33
+
+#elif F_CPU == 12000000
+	// Timing for 12MHz
+	#define RUWIDO_SHORT_MIN 7 // 7.5
+	#define RUWIDO_SHORT_MAX 12 // 12.0
+
+	#define RUWIDO_LONG_MIN  17 // 17.25
+	#define RUWIDO_LONG_MAX  22 //22.5
+
+	#define RUWIDO_MIN_NUM_BITS  26 // 19.5
+	#define RUWIDO_MAX_NUM_BITS  33 // 24.75
+
+#else
+	#error "This code runs only with 12 or 16MHz"
+#endif
+
 
 #define NEC_BURST_MIN 545
 #define NEC_BURST_MAX 555

@@ -5,14 +5,18 @@
 ************************************************
 
 This Code is a blend of V-USB and the Ruwido decoder by Guenter Bartsch.
-It should run on any ATMega*8 device. The .hex file is compiled for an
-ATMega328, see http://vusb.wikidot.com/hardware for general information
-on the USB-interface. To run the unmodified .hex file connect your
-controller like this:
+It should run on any ATMega*8 device. See http://vusb.wikidot.com/hardware
+for general information on the USB-interface. To run the unmodified code
+connect your controller like this:
 
 PD0: USB D-
 PD2: USB D+
-PB1: TSOP 1756 Output
+PD3: TSOP 1756 Output
 PB6/7: 16MHz Crystal
 
+The IR decoder can run with either 12 or 16 MHz, other frequencies are not
+supported.
+
+If you want to run this on a USBASP you will have to change the pin for
+USB D+ in usbconfig.h and solder the TSOP output to PIND3 of the controller.
 

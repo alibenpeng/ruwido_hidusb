@@ -7,15 +7,16 @@
 # License: GNU GPL v2 (see License.txt) or proprietary (CommercialLicense.txt)
 # This Revision: $Id: Makefile 301 2007-03-29 17:07:53Z cs $
 
-F_CPU=16000000
-DEVICE=atmega328p
+F_CPU=12000000 # The IR Code runs with either 12 or 16MHz
+DEVICE=atmega8 # should compile on ATMega8 and ATMega*8
+DEBUG_LEVEL=2  # Serial console with 19200 Bps on PIND1
 
 AVRDUDE = avrdude -c stk500v2 -P /dev/ttyUSB0 -p $(DEVICE)
 # The two lines above are for "uisp" and the AVR910 serial programmer connected
 # to a Keyspan USB to serial converter to a Mac running Mac OS X.
 # Choose your favorite programmer and interface.
 
-COMPILE = avr-gcc -Wall -Os -Iir -Iuart -Iusbdrv -I. -mmcu=$(DEVICE) -DF_CPU=$(F_CPU) -DDEBUG_LEVEL=0 -std=gnu99
+COMPILE = avr-gcc -Wall -Os -Iir -Iuart -Iusbdrv -I. -mmcu=$(DEVICE) -DF_CPU=$(F_CPU) -DDEBUG_LEVEL=$(DEBUG_LEVEL) -std=gnu99
 
 OBJECTS = usbdrv/usbdrv.o usbdrv/usbdrvasm.o usbdrv/oddebug.o ir/ir.o uart/uart.o main.o
 

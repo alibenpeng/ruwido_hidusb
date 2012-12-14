@@ -9,9 +9,6 @@
  * License: GNU GPL v2 (see License.txt)
  */
 
-
-//#define UART // This breaks USB!!
-
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
@@ -19,14 +16,14 @@
 #include <util/delay.h>
 #include <stdlib.h>
 #include <inttypes.h>
-
 #include "ir/ir.h"
 #include "uart/uart.h"
-
 #include "usbdrv.h"
 #include "oddebug.h"
-
 #include "keymap.h"
+
+
+//#define UART // This breaks USB!!
 
 /* ----------------------- hardware I/O abstraction ------------------------ */
 
@@ -34,7 +31,7 @@
 PD0	USB-
 PD1	debug tx
 PD2	USB+ (int0)
-PB1 IR
+PD3 IR (int1)
 */
 
 static void hardwareInit(void)
@@ -64,12 +61,9 @@ static void irInit (void) {
 	DDRB = 0 ;
 	DDRD = (1<<1) ; // TX
 
-        // UART (debug output)
-#ifdef UART	
-	uart_init();
-#endif
 
 	// IR 
+
 
 	// timer1 will be used basically as a real time clock
 	
@@ -78,14 +72,32 @@ static void irInit (void) {
 
 	// IR trigger interrupt
 
- 	PCMSK0  = (1<<PCINT1);     // enable pin change interrupt on PINB1
- 	PCICR   = (1<<PCIE0);
+  #if defined (__AVR_ATmega8__) || defined (__AVR_ATmega16__) || defined (__AVR_ATmega32__) || defined (__AVR_ATmega64__) || defined (__AVR_ATmega162__)
+
+ 	GIMSK  |= (1<<INT1);     // enable pin change interrupt on PIND3
+	MCUCR  |= (1<<ISC10);    // INT1 triggers on any level change
+
+	#else
+
+ 	//PCMSK0  = (1<<PCINT1);     // enable pin change interrupt on PINB1
+ 	//PCICR   = (1<<PCIE0);
+ 	PCMSK2  = (1<<PCINT19);     // enable pin change interrupt on PIND3
+ 	PCICR   = (1<<PCIE2);       // enable pcint for int group 2
+
+	#endif
 
 }
 
-ISR(PCINT0_vect) { 
+#if defined (__AVR_ATmega8__) || defined (__AVR_ATmega16__) || defined (__AVR_ATmega32__) || defined (__AVR_ATmega64__) || defined (__AVR_ATmega162__)
+ISR(INT1_vect) { 
 	ir_ISR();
 } 
+#else
+//ISR(PCINT0_vect) { 
+ISR(PCINT2_vect) { 
+	ir_ISR();
+} 
+#endif
 
 // Lookup Keys from Key Table
 
@@ -116,7 +128,7 @@ static uchar    keyPressed(void) {
 	IR_DATA ird;
 	if (ir_get_data(&ird)) {
 
-#ifdef UART	
+#if DEBUG_LEVEL > 0
 		uart_puts ("IR: ");
 		uart_puts (" adr=");
 		uart_print16h(ird.address);
@@ -222,7 +234,7 @@ uchar   idleCounter = 0;
 	usbInit();
 	irInit();
 
-#ifdef UART	
+#if DEBUG_LEVEL > 0
 	uart_println();
 	uart_println();
 	uart_println();
@@ -240,8 +252,13 @@ uchar   idleCounter = 0;
 							lastKey = key;
 							keyDidChange = 1;
 					}
+					#if defined (__AVR_ATmega8__) || defined (__AVR_ATmega16__) || defined (__AVR_ATmega32__) || defined (__AVR_ATmega64__) || defined (__AVR_ATmega162__)
+					if(TIFR & (1<<TOV0)){   // 22 ms timer 
+							TIFR = 1<<TOV0;
+					#else
 					if(TIFR0 & (1<<TOV0)){   // 22 ms timer 
 							TIFR0 = 1<<TOV0;
+					#endif
 							if(idleRate != 0){
 									if(idleCounter > 4){
 											idleCounter -= 5;   // 22 ms in units of 4 ms

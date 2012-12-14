@@ -25,7 +25,8 @@ the output and a memory block to dump in hex ('data' and 'len').
 
 
 #ifndef F_CPU
-#   define  F_CPU   12000000    /* 12 MHz */
+#   error "Please set F_CPU in Makefile!"
+//#   define  F_CPU   12000000    /* 12 MHz */
 #endif
 
 /* make sure we have the UART defines: */
