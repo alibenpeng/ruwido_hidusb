@@ -1,0 +1,18 @@
+************************************************
+*                                              *
+* RUWIDO V-USB-HID Receiver by Alexander Meyer *
+*                                              *
+************************************************
+
+This Code is a blend of V-USB and the Ruwido decoder by Guenter Bartsch.
+It should run on any ATMega*8 device. The .hex file is compiled for an
+ATMega328, see http://vusb.wikidot.com/hardware for general information
+on the USB-interface. To run the unmodified .hex file connect your
+controller like this:
+
+PD0: USB D-
+PD2: USB D+
+PB1: TSOP 1756 Output
+PB6/7: 16MHz Crystal
+
+
