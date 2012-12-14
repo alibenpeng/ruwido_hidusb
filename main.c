@@ -106,7 +106,7 @@ uchar mod_key = 0;
 static int lookupKey(uint32_t merlinKey) {
 	for (int i = 0; i<= NUM_MODS; i++) {
 		if (modmap[i].merlin == merlinKey) {
-			mod_key = modmap[i].usb;
+			mod_key |= (modmap[i].usb);
 			return 0;
 		}
 	}
