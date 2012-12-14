@@ -1,0 +1,449 @@
+   1               		.file	"uart.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__ = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	uart_init
+  18               	uart_init:
+  19               	.LFB1:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	/* stack size = 0 */
+  24               	.L__stack_usage = 0
+  25               	.LM2:
+  26 0000 89E1      		ldi r24,lo8(25)
+  27 0002 90E0      		ldi r25,hi8(25)
+  28 0004 9093 C500 		sts 196+1,r25
+  29 0008 8093 C400 		sts 196,r24
+  30               	.LM3:
+  31 000c 86E0      		ldi r24,lo8(6)
+  32 000e 8093 C200 		sts 194,r24
+  33               	.LM4:
+  34 0012 88E1      		ldi r24,lo8(24)
+  35 0014 8093 C100 		sts 193,r24
+  36               	.LM5:
+  37 0018 1092 C000 		sts 192,__zero_reg__
+  38               	/* epilogue start */
+  39               	.LM6:
+  40 001c 0895      		ret
+  41               	.LFE1:
+  43               	.global	uart_putc
+  45               	uart_putc:
+  46               	.LFB2:
+  47               	.LM7:
+  48               	/* prologue: function */
+  49               	/* frame size = 0 */
+  50               	/* stack size = 0 */
+  51               	.L__stack_usage = 0
+  52               	.LVL0:
+  53               	.L3:
+  54               	.LM8:
+  55 001e 9091 C000 		lds r25,192
+  56 0022 95FF      		sbrs r25,5
+  57 0024 00C0      		rjmp .L3
+  58               	.LM9:
+  59 0026 8093 C600 		sts 198,r24
+  60               	/* epilogue start */
+  61               	.LM10:
+  62 002a 0895      		ret
+  63               	.LFE2:
+  65               	.global	uart_puts
+  67               	uart_puts:
+  68               	.LFB3:
+  69               	.LM11:
+  70               	.LVL1:
+  71 002c EF92      		push r14
+  72 002e FF92      		push r15
+  73 0030 CF93      		push r28
+  74 0032 DF93      		push r29
+  75               	/* prologue: function */
+  76               	/* frame size = 0 */
+  77               	/* stack size = 4 */
+  78               	.L__stack_usage = 4
+  79               	.LM12:
+  80 0034 E82E      		mov r14,r24
+  81 0036 E701      		movw r28,r14
+  82 0038 7E01      		movw r14,r28
+  83 003a F92E      		mov r15,r25
+  84 003c E701      		movw r28,r14
+  85               	.LM13:
+  86 003e 00C0      		rjmp .L6
+  87               	.LVL2:
+  88               	.L7:
+  89               	.LM14:
+  90 0040 0E94 0000 		call uart_putc
+  91               	.L6:
+  92               	.LM15:
+  93 0044 8991      		ld r24,Y+
+  94 0046 8823      		tst r24
+  95 0048 01F4      		brne .L7
+  96               	/* epilogue start */
+  97               	.LM16:
+  98 004a DF91      		pop r29
+  99 004c CF91      		pop r28
+ 100 004e FF90      		pop r15
+ 101 0050 EF90      		pop r14
+ 102 0052 0895      		ret
+ 103               	.LFE3:
+ 105               	.global	uart_print4h
+ 107               	uart_print4h:
+ 108               	.LFB4:
+ 109               	.LM17:
+ 110               	.LVL3:
+ 111               	/* prologue: function */
+ 112               	/* frame size = 0 */
+ 113               	/* stack size = 0 */
+ 114               	.L__stack_usage = 0
+ 115               	.LM18:
+ 116 0054 8A30      		cpi r24,lo8(10)
+ 117 0056 00F4      		brsh .L9
+ 118               	.LM19:
+ 119 0058 805D      		subi r24,lo8(-(48))
+ 120               	.LVL4:
+ 121 005a 00C0      		rjmp .L11
+ 122               	.LVL5:
+ 123               	.L9:
+ 124               	.LM20:
+ 125 005c 895C      		subi r24,lo8(-(55))
+ 126               	.LVL6:
+ 127               	.L11:
+ 128 005e 0E94 0000 		call uart_putc
+ 129 0062 0895      		ret
+ 130               	.LFE4:
+ 132               		.data
+ 133               	.LC0:
+ 134 0000 3078 00   		.string	"0x"
+ 135               		.text
+ 136               	.global	uart_print8h
+ 138               	uart_print8h:
+ 139               	.LFB5:
+ 140               	.LM21:
+ 141               	.LVL7:
+ 142 0064 1F93      		push r17
+ 143               	/* prologue: function */
+ 144               	/* frame size = 0 */
+ 145               	/* stack size = 1 */
+ 146               	.L__stack_usage = 1
+ 147 0066 182F      		mov r17,r24
+ 148               	.LM22:
+ 149 0068 80E0      		ldi r24,lo8(.LC0)
+ 150 006a 90E0      		ldi r25,hi8(.LC0)
+ 151               	.LVL8:
+ 152 006c 0E94 0000 		call uart_puts
+ 153               	.LM23:
+ 154 0070 812F      		mov r24,r17
+ 155 0072 8295      		swap r24
+ 156 0074 8F70      		andi r24,lo8(15)
+ 157 0076 0E94 0000 		call uart_print4h
+ 158               	.LM24:
+ 159 007a 812F      		mov r24,r17
+ 160 007c 8F70      		andi r24,lo8(15)
+ 161 007e 0E94 0000 		call uart_print4h
+ 162               	/* epilogue start */
+ 163               	.LM25:
+ 164 0082 1F91      		pop r17
+ 165               	.LVL9:
+ 166 0084 0895      		ret
+ 167               	.LFE5:
+ 169               	.global	uart_print16h
+ 171               	uart_print16h:
+ 172               	.LFB6:
+ 173               	.LM26:
+ 174               	.LVL10:
+ 175 0086 EF92      		push r14
+ 176 0088 FF92      		push r15
+ 177 008a CF93      		push r28
+ 178 008c DF93      		push r29
+ 179               	/* prologue: function */
+ 180               	/* frame size = 0 */
+ 181               	/* stack size = 4 */
+ 182               	.L__stack_usage = 4
+ 183 008e EC01      		movw r28,r24
+ 184               	.LM27:
+ 185 0090 80E0      		ldi r24,lo8(.LC0)
+ 186 0092 90E0      		ldi r25,hi8(.LC0)
+ 187               	.LVL11:
+ 188 0094 0E94 0000 		call uart_puts
+ 189               	.LM28:
+ 190 0098 7E01      		movw r14,r28
+ 191 009a 8F2D      		mov r24,r15
+ 192 009c 8295      		swap r24
+ 193 009e 8F70      		andi r24,lo8(15)
+ 194 00a0 0E94 0000 		call uart_print4h
+ 195               	.LM29:
+ 196 00a4 8F2D      		mov r24,r15
+ 197 00a6 8F70      		andi r24,lo8(15)
+ 198 00a8 0E94 0000 		call uart_print4h
+ 199               	.LM30:
+ 200 00ac CE01      		movw r24,r28
+ 201 00ae 24E0      		ldi r18,4
+ 202 00b0 9695      	1:	lsr r25
+ 203 00b2 8795      		ror r24
+ 204 00b4 2A95      		dec r18
+ 205 00b6 01F4      		brne 1b
+ 206 00b8 8F70      		andi r24,lo8(15)
+ 207 00ba 0E94 0000 		call uart_print4h
+ 208               	.LM31:
+ 209 00be 9E01      		movw r18,r28
+ 210 00c0 2F70      		andi r18,lo8(15)
+ 211 00c2 822F      		mov r24,r18
+ 212 00c4 0E94 0000 		call uart_print4h
+ 213               	/* epilogue start */
+ 214               	.LM32:
+ 215 00c8 DF91      		pop r29
+ 216 00ca CF91      		pop r28
+ 217               	.LVL12:
+ 218 00cc FF90      		pop r15
+ 219 00ce EF90      		pop r14
+ 220               	.LVL13:
+ 221 00d0 0895      		ret
+ 222               	.LFE6:
+ 224               	.global	uart_print32h
+ 226               	uart_print32h:
+ 227               	.LFB7:
+ 228               	.LM33:
+ 229               	.LVL14:
+ 230 00d2 EF92      		push r14
+ 231 00d4 FF92      		push r15
+ 232 00d6 0F93      		push r16
+ 233 00d8 1F93      		push r17
+ 234               	/* prologue: function */
+ 235               	/* frame size = 0 */
+ 236               	/* stack size = 4 */
+ 237               	.L__stack_usage = 4
+ 238 00da 7B01      		movw r14,r22
+ 239 00dc 8C01      		movw r16,r24
+ 240               	.LM34:
+ 241 00de 80E0      		ldi r24,lo8(.LC0)
+ 242 00e0 90E0      		ldi r25,hi8(.LC0)
+ 243 00e2 0E94 0000 		call uart_puts
+ 244               	.LVL15:
+ 245               	.LM35:
+ 246 00e6 D801      		movw r26,r16
+ 247 00e8 C701      		movw r24,r14
+ 248 00ea 6CE1      		ldi r22,28
+ 249 00ec B695      	1:	lsr r27
+ 250 00ee A795      		ror r26
+ 251 00f0 9795      		ror r25
+ 252 00f2 8795      		ror r24
+ 253 00f4 6A95      		dec r22
+ 254 00f6 01F4      		brne 1b
+ 255 00f8 0E94 0000 		call uart_print4h
+ 256               	.LM36:
+ 257 00fc 812F      		mov r24,r17
+ 258 00fe 8F70      		andi r24,lo8(15)
+ 259 0100 0E94 0000 		call uart_print4h
+ 260               	.LM37:
+ 261 0104 D801      		movw r26,r16
+ 262 0106 C701      		movw r24,r14
+ 263 0108 54E1      		ldi r21,20
+ 264 010a B695      	1:	lsr r27
+ 265 010c A795      		ror r26
+ 266 010e 9795      		ror r25
+ 267 0110 8795      		ror r24
+ 268 0112 5A95      		dec r21
+ 269 0114 01F4      		brne 1b
+ 270 0116 8F70      		andi r24,lo8(15)
+ 271 0118 0E94 0000 		call uart_print4h
+ 272               	.LM38:
+ 273 011c 802F      		mov r24,r16
+ 274 011e 8F70      		andi r24,lo8(15)
+ 275 0120 0E94 0000 		call uart_print4h
+ 276               	.LM39:
+ 277 0124 D801      		movw r26,r16
+ 278 0126 C701      		movw r24,r14
+ 279 0128 4CE0      		ldi r20,12
+ 280 012a B695      	1:	lsr r27
+ 281 012c A795      		ror r26
+ 282 012e 9795      		ror r25
+ 283 0130 8795      		ror r24
+ 284 0132 4A95      		dec r20
+ 285 0134 01F4      		brne 1b
+ 286 0136 8F70      		andi r24,lo8(15)
+ 287 0138 0E94 0000 		call uart_print4h
+ 288               	.LM40:
+ 289 013c 8F2D      		mov r24,r15
+ 290 013e 8F70      		andi r24,lo8(15)
+ 291 0140 0E94 0000 		call uart_print4h
+ 292               	.LM41:
+ 293 0144 D801      		movw r26,r16
+ 294 0146 C701      		movw r24,r14
+ 295 0148 34E0      		ldi r19,4
+ 296 014a B695      	1:	lsr r27
+ 297 014c A795      		ror r26
+ 298 014e 9795      		ror r25
+ 299 0150 8795      		ror r24
+ 300 0152 3A95      		dec r19
+ 301 0154 01F4      		brne 1b
+ 302 0156 8F70      		andi r24,lo8(15)
+ 303 0158 0E94 0000 		call uart_print4h
+ 304               	.LM42:
+ 305 015c 8E2D      		mov r24,r14
+ 306 015e 8F70      		andi r24,lo8(15)
+ 307 0160 0E94 0000 		call uart_print4h
+ 308               	/* epilogue start */
+ 309               	.LM43:
+ 310 0164 1F91      		pop r17
+ 311 0166 0F91      		pop r16
+ 312 0168 FF90      		pop r15
+ 313 016a EF90      		pop r14
+ 314               	.LVL16:
+ 315 016c 0895      		ret
+ 316               	.LFE7:
+ 318               	.global	uart_print16
+ 320               	uart_print16:
+ 321               	.LFB8:
+ 322               	.LM44:
+ 323               	.LVL17:
+ 324 016e FF92      		push r15
+ 325 0170 0F93      		push r16
+ 326 0172 1F93      		push r17
+ 327 0174 CF93      		push r28
+ 328 0176 DF93      		push r29
+ 329               	/* prologue: function */
+ 330               	/* frame size = 0 */
+ 331               	/* stack size = 5 */
+ 332               	.L__stack_usage = 5
+ 333 0178 EC01      		movw r28,r24
+ 334               	.LM45:
+ 335 017a 60E1      		ldi r22,lo8(10000)
+ 336 017c 77E2      		ldi r23,hi8(10000)
+ 337 017e 0E94 0000 		call __udivmodhi4
+ 338               	.LVL18:
+ 339 0182 862F      		mov r24,r22
+ 340 0184 805D      		subi r24,lo8(-(48))
+ 341 0186 0E94 0000 		call uart_putc
+ 342               	.LM46:
+ 343 018a CE01      		movw r24,r28
+ 344 018c 68EE      		ldi r22,lo8(1000)
+ 345 018e 73E0      		ldi r23,hi8(1000)
+ 346 0190 0E94 0000 		call __udivmodhi4
+ 347 0194 0AE0      		ldi r16,lo8(10)
+ 348 0196 10E0      		ldi r17,hi8(10)
+ 349 0198 CB01      		movw r24,r22
+ 350 019a B801      		movw r22,r16
+ 351 019c 0E94 0000 		call __udivmodhi4
+ 352 01a0 805D      		subi r24,lo8(-(48))
+ 353 01a2 0E94 0000 		call uart_putc
+ 354               	.LM47:
+ 355 01a6 CE01      		movw r24,r28
+ 356 01a8 64E6      		ldi r22,lo8(100)
+ 357 01aa 70E0      		ldi r23,hi8(100)
+ 358 01ac 0E94 0000 		call __udivmodhi4
+ 359 01b0 CB01      		movw r24,r22
+ 360 01b2 B801      		movw r22,r16
+ 361 01b4 0E94 0000 		call __udivmodhi4
+ 362 01b8 805D      		subi r24,lo8(-(48))
+ 363 01ba 0E94 0000 		call uart_putc
+ 364               	.LM48:
+ 365 01be CE01      		movw r24,r28
+ 366 01c0 B801      		movw r22,r16
+ 367 01c2 0E94 0000 		call __udivmodhi4
+ 368 01c6 F82E      		mov r15,r24
+ 369 01c8 CB01      		movw r24,r22
+ 370 01ca B801      		movw r22,r16
+ 371 01cc 0E94 0000 		call __udivmodhi4
+ 372 01d0 805D      		subi r24,lo8(-(48))
+ 373 01d2 0E94 0000 		call uart_putc
+ 374               	.LM49:
+ 375 01d6 8F2D      		mov r24,r15
+ 376 01d8 805D      		subi r24,lo8(-(48))
+ 377 01da 0E94 0000 		call uart_putc
+ 378               	/* epilogue start */
+ 379               	.LM50:
+ 380 01de DF91      		pop r29
+ 381 01e0 CF91      		pop r28
+ 382               	.LVL19:
+ 383 01e2 1F91      		pop r17
+ 384 01e4 0F91      		pop r16
+ 385 01e6 FF90      		pop r15
+ 386 01e8 0895      		ret
+ 387               	.LFE8:
+ 389               	.global	uart_print8
+ 391               	uart_print8:
+ 392               	.LFB9:
+ 393               	.LM51:
+ 394               	.LVL20:
+ 395 01ea 0F93      		push r16
+ 396 01ec 1F93      		push r17
+ 397               	/* prologue: function */
+ 398               	/* frame size = 0 */
+ 399               	/* stack size = 2 */
+ 400               	.L__stack_usage = 2
+ 401 01ee 082F      		mov r16,r24
+ 402               	.LM52:
+ 403 01f0 64E6      		ldi r22,lo8(100)
+ 404 01f2 0E94 0000 		call __udivmodqi4
+ 405               	.LVL21:
+ 406 01f6 1AE0      		ldi r17,lo8(10)
+ 407 01f8 612F      		mov r22,r17
+ 408 01fa 0E94 0000 		call __udivmodqi4
+ 409 01fe 892F      		mov r24,r25
+ 410 0200 805D      		subi r24,lo8(-(48))
+ 411 0202 0E94 0000 		call uart_putc
+ 412               	.LM53:
+ 413 0206 802F      		mov r24,r16
+ 414 0208 612F      		mov r22,r17
+ 415 020a 0E94 0000 		call __udivmodqi4
+ 416 020e 092F      		mov r16,r25
+ 417               	.LVL22:
+ 418 0210 0E94 0000 		call __udivmodqi4
+ 419 0214 892F      		mov r24,r25
+ 420 0216 805D      		subi r24,lo8(-(48))
+ 421 0218 0E94 0000 		call uart_putc
+ 422               	.LM54:
+ 423 021c 802F      		mov r24,r16
+ 424 021e 805D      		subi r24,lo8(-(48))
+ 425 0220 0E94 0000 		call uart_putc
+ 426               	/* epilogue start */
+ 427               	.LM55:
+ 428 0224 1F91      		pop r17
+ 429 0226 0F91      		pop r16
+ 430 0228 0895      		ret
+ 431               	.LFE9:
+ 433               	.global	uart_println
+ 435               	uart_println:
+ 436               	.LFB10:
+ 437               	.LM56:
+ 438               	/* prologue: function */
+ 439               	/* frame size = 0 */
+ 440               	/* stack size = 0 */
+ 441               	.L__stack_usage = 0
+ 442               	.LM57:
+ 443 022a 8DE0      		ldi r24,lo8(13)
+ 444 022c 0E94 0000 		call uart_putc
+ 445               	.LM58:
+ 446 0230 8AE0      		ldi r24,lo8(10)
+ 447 0232 0E94 0000 		call uart_putc
+ 448               	/* epilogue start */
+ 449               	.LM59:
+ 450 0236 0895      		ret
+ 451               	.LFE10:
+ 549               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 uart.c
+     /tmp/ccnI5EsQ.s:2      *ABS*:000000000000003f __SREG__
+     /tmp/ccnI5EsQ.s:3      *ABS*:000000000000003e __SP_H__
+     /tmp/ccnI5EsQ.s:4      *ABS*:000000000000003d __SP_L__
+     /tmp/ccnI5EsQ.s:5      *ABS*:0000000000000034 __CCP__
+     /tmp/ccnI5EsQ.s:6      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccnI5EsQ.s:7      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccnI5EsQ.s:18     .text:0000000000000000 uart_init
+     /tmp/ccnI5EsQ.s:45     .text:000000000000001e uart_putc
+     /tmp/ccnI5EsQ.s:67     .text:000000000000002c uart_puts
+     /tmp/ccnI5EsQ.s:107    .text:0000000000000054 uart_print4h
+     /tmp/ccnI5EsQ.s:138    .text:0000000000000064 uart_print8h
+     /tmp/ccnI5EsQ.s:171    .text:0000000000000086 uart_print16h
+     /tmp/ccnI5EsQ.s:226    .text:00000000000000d2 uart_print32h
+     /tmp/ccnI5EsQ.s:320    .text:000000000000016e uart_print16
+     /tmp/ccnI5EsQ.s:391    .text:00000000000001ea uart_print8
+     /tmp/ccnI5EsQ.s:435    .text:000000000000022a uart_println
+
+UNDEFINED SYMBOLS
+__udivmodhi4
+__udivmodqi4
+__do_copy_data
