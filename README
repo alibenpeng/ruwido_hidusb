@@ -5,11 +5,13 @@
 ************************************************
 
 This Code is a blend of V-USB and the Ruwido decoder by Guenter Bartsch.
-It runs on the ATMega8 as well as the 48-328 family.
-See http://vusb.wikidot.com/hardware for general information on the
-USB-interface. To run the unmodified code
+It runs on the ATMega8 as well as the 48-328 family. You also need a
+56kHz IR-receiver, e.g. the TSOP1756.
 
-connect your controller like this:
+See http://vusb.wikidot.com/hardware for general information on the
+USB-interface.
+
+To run the unmodified code connect your controller like this:
 
 PD0: USB D-
 PD2: USB D+
