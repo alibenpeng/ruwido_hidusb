@@ -16,7 +16,7 @@ To run the unmodified code connect your controller like this:
 PD0: USB D-
 PD2: USB D+
 PD3: TSOP 1756 Output
-PB6/7: 16MHz Crystal
+PB6/7: 12MHz or 16MHz Crystal
 
 The IR decoder can run with either 12 or 16 MHz, other frequencies are not
 supported.
