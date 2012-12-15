@@ -5,8 +5,10 @@
 ************************************************
 
 This Code is a blend of V-USB and the Ruwido decoder by Guenter Bartsch.
-It should run on any ATMega*8 device. See http://vusb.wikidot.com/hardware
-for general information on the USB-interface. To run the unmodified code
+It runs on the ATMega8 as well as the 48-328 family.
+See http://vusb.wikidot.com/hardware for general information on the
+USB-interface. To run the unmodified code
+
 connect your controller like this:
 
 PD0: USB D-
@@ -19,4 +21,10 @@ supported.
 
 If you want to run this on a USBASP you will have to change the pin for
 USB D+ in usbconfig.h and solder the TSOP output to PIND3 of the controller.
+
+TODO:
+
+Aggregation of modifyers does not work correctly yet.
+Not all Keycodes are mapped since I didn't find codes for some of the Keys
+in the USB-HID spec.
 
