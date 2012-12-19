@@ -9,7 +9,7 @@
 
 F_CPU=12000000 # The IR Code runs with either 12 or 16MHz
 DEVICE=atmega8 # should compile on ATMega8 and ATMega*8
-DEBUG_LEVEL=0  # Serial console with 19200 Bps on PIND1
+DEBUG_LEVEL=1  # Serial console with 19200 Bps on PIND1
 
 AVRDUDE = avrdude -c stk500v2 -P /dev/ttyUSB0 -p $(DEVICE)
 

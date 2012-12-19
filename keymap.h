@@ -57,7 +57,7 @@
 #define MERLIN_KEY_P_               0x05A3
 #define MERLIN_KEY_M_               0x05A4
 #define MERLIN_KEY_S_               0x0598
-#define MERLIN_KEY_TEXT             0x0E98
+#define MERLIN_KEY_TXT              0x0E98
 #define MERLIN_KEY_EXIT             0x0D54
 #define MERLIN_KEY_RED              0x06A8
 #define MERLIN_KEY_GREEN            0x08AB
@@ -83,46 +83,46 @@
 
 // Alice remote IR Keycodes
 
-#define ALICE_KEY_POWER
-#define ALICE_KEY_1
-#define ALICE_KEY_2
-#define ALICE_KEY_3
-#define ALICE_KEY_4
-#define ALICE_KEY_5
-#define ALICE_KEY_6
-#define ALICE_KEY_7
-#define ALICE_KEY_8
-#define ALICE_KEY_9
-#define ALICE_KEY_0
-#define ALICE_KEY_TV
-#define ALICE_KEY_LIST
-#define ALICE_KEY_INFO
-#define ALICE_KEY_EPG
-#define ALICE_KEY_ESC
-#define ALICE_KEY_MOVIE
-#define ALICE_KEY_UP
-#define ALICE_KEY_DOWN
-#define ALICE_KEY_LEFT
-#define ALICE_KEY_RIGHT
-#define ALICE_KEY_OK
-#define ALICE_KEY_RED
-#define ALICE_KEY_GREEN
-#define ALICE_KEY_YELLOW
-#define ALICE_KEY_BLUE
-#define ALICE_KEY_VOLPLUS
-#define ALICE_KEY_VOLMINUS
-#define ALICE_KEY_CHPLUS
-#define ALICE_KEY_CHMINUS
-#define ALICE_KEY_ALICE
-#define ALICE_KEY_PLAYPAUSE
-#define ALICE_KEY_LAST
-#define ALICE_KEY_REWIND
-#define ALICE_KEY_FASTFORWARD
-#define ALICE_KEY_NEXT
-#define ALICE_KEY_MUTE
-#define ALICE_KEY_STOP
-#define ALICE_KEY_REC
-#define ALICE_KEY_TXT
+#define ALICE_KEY_POWER             0x034c
+#define ALICE_KEY_1                 0x0ba9
+#define ALICE_KEY_2                 0x0ea8
+#define ALICE_KEY_3                 0x0cab
+#define ALICE_KEY_4                 0x0cac
+#define ALICE_KEY_5                 0x032d
+#define ALICE_KEY_6                 0x0cb8
+#define ALICE_KEY_7                 0x0333
+#define ALICE_KEY_8                 0x0334
+#define ALICE_KEY_9                 0x0339
+#define ALICE_KEY_0                 0x0ce8
+#define ALICE_KEY_TV                0x03a5
+#define ALICE_KEY_LIST              0x0ba8
+#define ALICE_KEY_INFO              0x0ae3
+#define ALICE_KEY_EPG               0x0acb
+#define ALICE_KEY_ESC               0x0b98
+#define ALICE_KEY_MOVIE             0x0b38
+#define ALICE_KEY_UP                0x0d4d
+#define ALICE_KEY_DOWN              0x052c
+#define ALICE_KEY_LEFT              0x052b
+#define ALICE_KEY_RIGHT             0x03a8
+#define ALICE_KEY_OK                0x034b
+#define ALICE_KEY_RED               0x02d4
+#define ALICE_KEY_GREEN             0x02b5
+#define ALICE_KEY_YELLOW            0x0ba4
+#define ALICE_KEY_BLUE              0x0ab4
+#define ALICE_KEY_VOLPLUS           0x05a3
+#define ALICE_KEY_VOLMINUS          0x05a9
+#define ALICE_KEY_CHPLUS            0x0568
+#define ALICE_KEY_CHMINUS           0x0d59
+#define ALICE_KEY_ALICE             0x0b68
+#define ALICE_KEY_PLAYPAUSE         0x0e98
+#define ALICE_KEY_LAST              0x0ea3
+#define ALICE_KEY_REWIND            0x0ea4
+#define ALICE_KEY_FASTFORWARD       0x0ea9
+#define ALICE_KEY_NEXT              0x0aa8
+#define ALICE_KEY_MUTE              0x0634
+#define ALICE_KEY_STOP              0x02ab
+#define ALICE_KEY_REC               0x02ac
+#define ALICE_KEY_TXT               0x04ad
 
 /* Keyboard usage values, see usb.org's HID-usage-tables document, chapter
  * 10 Keyboard/Keypad Page for more codes.
@@ -180,52 +180,94 @@
 #define KEY_ENTER            40
 #define KEY_SPACE            44
 
-#define KEY_POWER            102
-#define KEY_P_               19
-#define KEY_M_               127 // mute
-#define KEY_S_               22
-#define KEY_TEXT             0
 #define KEY_EXIT             41 // escape
 #define KEY_RED              47 // [
 #define KEY_GREEN            0  // control
 #define KEY_VT               45 // -
 #define KEY_YELLOW           0  // shift
 #define KEY_BLUE             48 // ]
-#define KEY_REWIND           0
-#define KEY_FASTFORWARD      0
-#define KEY_PLAYPAUSE        0
-#define KEY_FM               0
-#define KEY_STOP             0
-#define KEY_HELP             0
-#define KEY_REC              0
+
 #define KEY_UP               82
 #define KEY_DOWN             81
 #define KEY_LEFT             80
 #define KEY_RIGHT            79
 #define KEY_OK               88
-#define KEY_VOLPLUS          128
-#define KEY_VOLMINUS         129
-#define KEY_CHPLUS           0
-#define KEY_CHMINUS          0
+
+#define REMOTE_KEY_POWER            (0x02<<8)
+#define REMOTE_KEY_P_               0
+#define REMOTE_KEY_M_               (0x01<<8) // mute
+#define REMOTE_KEY_S_               0
+#define REMOTE_KEY_TXT              0
+#define REMOTE_KEY_EXIT             (0x08<<8)
+#define REMOTE_KEY_RED              47 // [
+#define REMOTE_KEY_GREEN            0  // control
+#define REMOTE_KEY_VT               45 // -
+#define REMOTE_KEY_YELLOW           0  // shift
+#define REMOTE_KEY_BLUE             48 // ]
+#define REMOTE_KEY_REWIND           (0x0f<<8)
+#define REMOTE_KEY_FASTFORWARD      (0x0e<<8)
+#define REMOTE_KEY_PLAYPAUSE        (0x0c<<8)
+#define REMOTE_KEY_FM               0
+#define REMOTE_KEY_STOP             (0x12<<8)
+#define REMOTE_KEY_HELP             (0x0b<<8)
+#define REMOTE_KEY_REC              (0x0d<<8)
+#define REMOTE_KEY_UP               (0x04<<8)
+#define REMOTE_KEY_DOWN             (0x05<<8)
+#define REMOTE_KEY_LEFT             (0x06<<8)
+#define REMOTE_KEY_RIGHT            (0x07<<8)
+#define REMOTE_KEY_OK               (0x03<<8)
+#define REMOTE_KEY_VOLPLUS          (1<<6)
+#define REMOTE_KEY_VOLMINUS         (1<<7)
+#define REMOTE_KEY_CHPLUS           (1<<4)
+#define REMOTE_KEY_CHMINUS          (1<<5)
+
+#define REMOTE_KEY_TV               (0x09<<8)
+#define REMOTE_KEY_LIST             (0x13<<8)
+#define REMOTE_KEY_INFO             (0x0b<<8)
+#define REMOTE_KEY_EPG              0
+#define REMOTE_KEY_ESC              (0x08<<8)
+#define REMOTE_KEY_MOVIE            (0x0a<<8)
+#define REMOTE_KEY_ALICE            0
+#define REMOTE_KEY_LAST             (0x10<<8)
+#define REMOTE_KEY_NEXT             (0x11<<8)
+#define REMOTE_KEY_MUTE             (1<<8)
+
+#define REMOTE_KEY_0                0x01
+#define REMOTE_KEY_1                0x02
+#define REMOTE_KEY_2                0x03
+#define REMOTE_KEY_3                0x04
+#define REMOTE_KEY_4                0x05
+#define REMOTE_KEY_5                0x06
+#define REMOTE_KEY_6                0x07
+#define REMOTE_KEY_7                0x08
+#define REMOTE_KEY_8                0x09
+#define REMOTE_KEY_9                0x0a
 
 // Keymapping array (could/should this be in progmem?)
 
 #define NUM_MODS    4
-#define NUM_KEYS    73
+#define NUM_MERLIN_KEYS    57
+#define NUM_MERLIN_REMOTE_KEYS    16
+#define NUM_ALICE_KEYS    40
 
 struct keymap_t {
-	uint32_t merlin;
+	uint16_t ruwido;
 	uint8_t  usb;
 };
 
-struct keymap_t modmap[NUM_KEYS] = {
+struct remote_keymap_t {
+	uint16_t ruwido;
+	uint16_t  usb;
+};
+
+struct keymap_t modmap[NUM_MODS] = {
 		{ MERLIN_MOD_CONTROL_LEFT,     MOD_CONTROL_LEFT     },
 		{ MERLIN_MOD_SHIFT_LEFT,       MOD_SHIFT_LEFT       },
 		{ MERLIN_MOD_ALT_LEFT,         MOD_ALT_LEFT         },
 		{ MERLIN_MOD_ALT_RIGHT,        MOD_ALT_RIGHT        },
 };
 
-struct keymap_t keymap[NUM_KEYS] = {
+struct keymap_t merlinKeymap[NUM_MERLIN_KEYS] = {
 		{ MERLIN_KEY_A,                KEY_A                },
 		{ MERLIN_KEY_B,                KEY_B                },
 		{ MERLIN_KEY_C,                KEY_C                },
@@ -272,32 +314,78 @@ struct keymap_t keymap[NUM_KEYS] = {
 		{ MERLIN_KEY_BACKSPACE,        KEY_BACKSPACE        },
 		{ MERLIN_KEY_ENTER,            KEY_ENTER            },
 		{ MERLIN_KEY_SPACE,            KEY_SPACE            },
-		{ MERLIN_KEY_POWER,            KEY_POWER            },
-		{ MERLIN_KEY_P_,               KEY_P_               },
-		{ MERLIN_KEY_M_,               KEY_M_               },
-		{ MERLIN_KEY_S_,               KEY_S_               },
-		{ MERLIN_KEY_TEXT,             KEY_TEXT             },
-		{ MERLIN_KEY_EXIT,             KEY_EXIT             },
 		{ MERLIN_KEY_RED,              KEY_RED              },
 		{ MERLIN_KEY_GREEN,            KEY_GREEN            },
 		{ MERLIN_KEY_VT,               KEY_VT               },
 		{ MERLIN_KEY_YELLOW,           KEY_YELLOW           },
 		{ MERLIN_KEY_BLUE,             KEY_BLUE             },
-		{ MERLIN_KEY_REWIND,           KEY_REWIND           },
-		{ MERLIN_KEY_FASTFORWARD,      KEY_FASTFORWARD      },
-		{ MERLIN_KEY_PLAYPAUSE,        KEY_PLAYPAUSE        },
-		{ MERLIN_KEY_FM,               KEY_FM               },
-		{ MERLIN_KEY_STOP,             KEY_STOP             },
-		{ MERLIN_KEY_HELP,             KEY_HELP             },
-		{ MERLIN_KEY_REC,              KEY_REC              },
 		{ MERLIN_KEY_UP,               KEY_UP               },
 		{ MERLIN_KEY_DOWN,             KEY_DOWN             },
 		{ MERLIN_KEY_LEFT,             KEY_LEFT             },
 		{ MERLIN_KEY_RIGHT,            KEY_RIGHT            },
 		{ MERLIN_KEY_OK,               KEY_OK               },
-		{ MERLIN_KEY_VOLPLUS,          KEY_VOLPLUS          },
-		{ MERLIN_KEY_VOLMINUS,         KEY_VOLMINUS         },
-		{ MERLIN_KEY_CHPLUS,           KEY_CHPLUS           },
-		{ MERLIN_KEY_CHMINUS,          KEY_CHMINUS          },
+		{ MERLIN_KEY_EXIT,             KEY_EXIT             },
+};
+
+struct remote_keymap_t merlinRemoteKeymap[NUM_MERLIN_REMOTE_KEYS] = {
+		{ MERLIN_KEY_VOLPLUS,          REMOTE_KEY_VOLPLUS          },
+		{ MERLIN_KEY_VOLMINUS,         REMOTE_KEY_VOLMINUS         },
+		{ MERLIN_KEY_CHPLUS,           REMOTE_KEY_CHPLUS           },
+		{ MERLIN_KEY_CHMINUS,          REMOTE_KEY_CHMINUS          },
+		{ MERLIN_KEY_POWER,            REMOTE_KEY_POWER            },
+		{ MERLIN_KEY_P_,               REMOTE_KEY_P_               },
+		{ MERLIN_KEY_M_,               REMOTE_KEY_M_               },
+		{ MERLIN_KEY_S_,               REMOTE_KEY_S_               },
+		{ MERLIN_KEY_TXT,              REMOTE_KEY_TXT              },
+		{ MERLIN_KEY_REWIND,           REMOTE_KEY_REWIND           },
+		{ MERLIN_KEY_FASTFORWARD,      REMOTE_KEY_FASTFORWARD      },
+		{ MERLIN_KEY_PLAYPAUSE,        REMOTE_KEY_PLAYPAUSE        },
+		{ MERLIN_KEY_FM,               REMOTE_KEY_FM               },
+		{ MERLIN_KEY_STOP,             REMOTE_KEY_STOP             },
+		{ MERLIN_KEY_HELP,             REMOTE_KEY_HELP             },
+		{ MERLIN_KEY_REC,              REMOTE_KEY_REC              },
 }; 
+
+struct remote_keymap_t aliceKeymap[NUM_ALICE_KEYS] = {
+		{ ALICE_KEY_POWER,             REMOTE_KEY_POWER             },
+		{ ALICE_KEY_1,                 REMOTE_KEY_1                 },
+		{ ALICE_KEY_2,                 REMOTE_KEY_2                 },
+		{ ALICE_KEY_3,                 REMOTE_KEY_3                 },
+		{ ALICE_KEY_4,                 REMOTE_KEY_4                 },
+		{ ALICE_KEY_5,                 REMOTE_KEY_5                 },
+		{ ALICE_KEY_6,                 REMOTE_KEY_6                 },
+		{ ALICE_KEY_7,                 REMOTE_KEY_7                 },
+		{ ALICE_KEY_8,                 REMOTE_KEY_8                 },
+		{ ALICE_KEY_9,                 REMOTE_KEY_9                 },
+		{ ALICE_KEY_0,                 REMOTE_KEY_0                 },
+		{ ALICE_KEY_TV,                REMOTE_KEY_TV                },
+		{ ALICE_KEY_LIST,              REMOTE_KEY_LIST              },
+		{ ALICE_KEY_INFO,              REMOTE_KEY_INFO              },
+		{ ALICE_KEY_EPG,               REMOTE_KEY_EPG               },
+		{ ALICE_KEY_ESC,               REMOTE_KEY_ESC               },
+		{ ALICE_KEY_MOVIE,             REMOTE_KEY_MOVIE             },
+		{ ALICE_KEY_UP,                REMOTE_KEY_UP                },
+		{ ALICE_KEY_DOWN,              REMOTE_KEY_DOWN              },
+		{ ALICE_KEY_LEFT,              REMOTE_KEY_LEFT              },
+		{ ALICE_KEY_RIGHT,             REMOTE_KEY_RIGHT             },
+		{ ALICE_KEY_OK,                REMOTE_KEY_OK                },
+		{ ALICE_KEY_RED,               REMOTE_KEY_RED               },
+		{ ALICE_KEY_GREEN,             REMOTE_KEY_GREEN             },
+		{ ALICE_KEY_YELLOW,            REMOTE_KEY_YELLOW            },
+		{ ALICE_KEY_BLUE,              REMOTE_KEY_BLUE              },
+		{ ALICE_KEY_VOLPLUS,           REMOTE_KEY_VOLPLUS           },
+		{ ALICE_KEY_VOLMINUS,          REMOTE_KEY_VOLMINUS          },
+		{ ALICE_KEY_CHPLUS,            REMOTE_KEY_CHPLUS            },
+		{ ALICE_KEY_CHMINUS,           REMOTE_KEY_CHMINUS           },
+		{ ALICE_KEY_ALICE,             REMOTE_KEY_ALICE             },
+		{ ALICE_KEY_PLAYPAUSE,         REMOTE_KEY_PLAYPAUSE         },
+		{ ALICE_KEY_LAST,              REMOTE_KEY_LAST              },
+		{ ALICE_KEY_REWIND,            REMOTE_KEY_REWIND            },
+		{ ALICE_KEY_FASTFORWARD,       REMOTE_KEY_FASTFORWARD       },
+		{ ALICE_KEY_NEXT,              REMOTE_KEY_NEXT              },
+		{ ALICE_KEY_MUTE,              REMOTE_KEY_MUTE              },
+		{ ALICE_KEY_STOP,              REMOTE_KEY_STOP              },
+		{ ALICE_KEY_REC,               REMOTE_KEY_REC               },
+		{ ALICE_KEY_TXT,               REMOTE_KEY_TXT               },
+};
 

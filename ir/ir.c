@@ -112,7 +112,7 @@
 	#define RUWIDO_LONG_MIN  23
 	#define RUWIDO_LONG_MAX  30
 
-	#define RUWIDO_MIN_NUM_BITS  26
+	#define RUWIDO_MIN_NUM_BITS  24 // originally 26, but two keys on the alice remote have only 24 bits long data
 	#define RUWIDO_MAX_NUM_BITS  33
 
 #elif F_CPU == 12000000
@@ -123,7 +123,7 @@
 	#define RUWIDO_LONG_MIN  17 // 17.25
 	#define RUWIDO_LONG_MAX  22 //22.5
 
-	#define RUWIDO_MIN_NUM_BITS  26 // 19.5
+	#define RUWIDO_MIN_NUM_BITS  24 // 19.5
 	#define RUWIDO_MAX_NUM_BITS  33 // 24.75
 
 #else
